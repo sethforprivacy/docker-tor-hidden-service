@@ -416,7 +416,7 @@ python-versions = ">=3.7"
 cfgv = ">=2.0.0"
 identify = ">=1.0.0"
 nodeenv = ">=0.11.1"
-pyyaml = ">=5.1"
+pyyaml = ">=6.0.1"
 virtualenv = ">=20.10.0"
 
 [[package]]
@@ -576,11 +576,11 @@ python-versions = ">=3.6.12,<3.11"
 [package.dependencies]
 fire = ">=0.3.1"
 pycryptodome = ">=3.9.4"
-pyyaml = ">=5.3.1"
+pyyaml = ">=6.0.1"
 
 [[package]]
 name = "pyyaml"
-version = "6.0"
+version = "6.0.2"
 description = "YAML parser and emitter for Python"
 category = "main"
 optional = false
