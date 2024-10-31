@@ -1,4 +1,4 @@
-name: "Test build of image when Dockerfile is changed"
+name: "Test build of image when Master is changed"
 
 on:
   push:

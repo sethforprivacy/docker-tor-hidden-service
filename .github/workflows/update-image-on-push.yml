@@ -1,4 +1,4 @@
-name: "Update image when Dockerfile is changed"
+name: "Update image when Master is changed"
 
 on:
   push:
