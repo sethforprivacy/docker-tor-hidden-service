@@ -20,7 +20,7 @@
 
 ### Setup hosts
 
-From 2019, new conf to handle tor v3 address has been added. Here an example with `docker-compose` v2+:
+From 2019, new conf to handle tor v3 address has been added. Here an example with `docker compose`:
 
 ```yaml
 services:
