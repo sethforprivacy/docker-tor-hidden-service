@@ -23,17 +23,14 @@
 From 2019, new conf to handle tor v3 address has been added. Here an example with `docker-compose` v2+:
 
 ```yaml
-version: "2"
-
 services:
   tor:
-    image: goldy/tor-hidden-service:0.3.5.8
+    image: ghcr.io/sethforprivacy/tor:latest
     links:
       - hello
       - world
       - again
     environment:
-
         # hello and again will share the same onion v3 address
         SERVICE1_TOR_SERVICE_HOSTS: 88:hello:80,8000:world:80
         # Optional as tor version 2 is not supported anymore
