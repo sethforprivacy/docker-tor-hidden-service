@@ -14,7 +14,8 @@ ENV POETRY_VIRTUALENVS_CREATE=false
 RUN set -ex && apk --update --no-cache upgrade
 
 # Install build and final dependencies
-RUN apk add --update --no-cache git bind-tools cargo zstd-dev xz-dev libc-dev libevent-dev openssl-dev gnupg gcc make automake ca-certificates autoconf musl-dev coreutils libffi-dev zlib-dev libevent openssl libtool
+RUN apk add --update --no-cache git bind-tools cargo zstd-dev xz-dev libc-dev libevent-dev openssl-dev gnupg gcc make automake ca-certificates autoconf musl-dev coreutils libffi-dev zlib-dev libevent openssl libtool && \
+    pip3 install --upgrade pip poetry
 
 RUN mkdir -p /usr/local/src/ /var/lib/tor/ && \
     git clone --branch tor-$TOR_BRANCH https://gitlab.torproject.org/tpo/core/tor.git/ /usr/local/src/tor && \
@@ -27,8 +28,7 @@ RUN mkdir -p /usr/local/src/ /var/lib/tor/ && \
     --disable-unittests && \
     make -j${NPROC:-$(nproc)} && make -j${NPROC:-$(nproc)} install && \
     cd .. && \
-    rm -rf tor && \
-    pip3 install --upgrade pip poetry
+    rm -rf tor
 
 RUN git clone --branch $TORSOCKS_BRANCH https://gitlab.torproject.org/tpo/core/torsocks.git/ /usr/local/src/torsocks && \
     cd /usr/local/src/torsocks && \
