@@ -1,9 +1,11 @@
-name: "Update image when Master is changed"
+name: "Update image when Dockerfile is changed"
 
 on:
   push:
     branches:
     - master
+    paths:
+    - 'Dockerfile'
   workflow_dispatch:
 
 jobs:
