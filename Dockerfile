@@ -1,5 +1,5 @@
 # Use latest support Python version with an Alpine base
-FROM python:3.10-alpine3.20
+FROM python:3.10-alpine
 
 # Set necessary args for building
 # If omitted, the versions are determined from the git tags
@@ -31,6 +31,7 @@ RUN apk add --update --no-cache \
     libevent-dev \
     libffi-dev \
     libtool \
+    linux-headers \
     make \
     musl-dev \
     openssl \
@@ -89,6 +90,7 @@ RUN apk del \
     libevent-dev \
     libffi-dev \
     libtool \
+    linux-headers \
     make \
     musl-dev \
     openssl-dev \
