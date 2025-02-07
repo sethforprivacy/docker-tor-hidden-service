@@ -65,13 +65,8 @@ jobs:
         id: docker_build_push
         with:
           type: image
-          push: true
-          push-by-digest: true
-          name-canonical: true
+          outputs: type=image,"name=${{ env.DOCKERHUB_REPO }},${{ env.GHCR_REPO }}",push-by-digest=true,name-canonical=true,push=true
           platforms: ${{ matrix.platform }}
-          tags: |
-            ${{ env.GHCR_REPO }}:latest
-            ${{ env.GHCR_REPO }}:${{ steps.get_short_sha.outputs.sha_short }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=registry,ref=${{ env.GHCR_REPO }}:latest
           cache-to: type=inline
