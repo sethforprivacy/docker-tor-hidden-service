@@ -31,7 +31,7 @@ ipy = ">=1.00"
 pytor = '^0.1.9'
 pyentrypoint = "^0.8.0"
 
-[tool.poetry.group.dev.dependencies]
+[tool.poetry.dev-dependencies]
 autopep8 = ">=1.5.2"
 tox = ">=3.15.0"
 cryptography = ">=3.2"
