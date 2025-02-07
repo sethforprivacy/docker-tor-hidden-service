@@ -24,10 +24,14 @@ jobs:
     steps:
       - name: Prepare platform matrix for arm64
         if: runner.arch == 'ARM64'
-        run: echo "PLATFORM=linux/arm64" >> $GITHUB_ENV
+        run: |
+          echo "PLATFORM=linux/arm64" >> $GITHUB_ENV
+          echo "DIGEST_NAME=arm64" >> $GITHUB_ENV
       - name: Prepare platform matrix for amd64
         if: runner.arch == 'X64'
-        run: echo "PLATFORM=linux/amd64" >> $GITHUB_ENV
+        run: |
+          echo "PLATFORM=linux/amd64" >> $GITHUB_ENV
+          echo "DIGEST_NAME=amd64" >> $GITHUB_ENV
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
@@ -75,7 +79,7 @@ jobs:
       - name: Upload digest
         uses: actions/upload-artifact@v4
         with:
-          name: digests-${{ env.PLATFORM }}
+          name: digests-${{ env.DIGEST_NAME }}
           path: ${{ runner.temp }}/digests/*
           if-no-files-found: error
           retention-days: 1
