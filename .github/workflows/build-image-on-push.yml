@@ -1,14 +1,10 @@
-name: "Test build of image when Dockerfile is changed"
+name: "Test build of image on pull requests"
 
 on:
   push:
-    paths:
-    - 'Dockerfile'
     branches-ignore:
     - master
   pull_request:
-    paths:
-    - 'Dockerfile'
   workflow_dispatch:
 
 jobs:
@@ -28,13 +24,13 @@ jobs:
         name: Checkout repository
         uses: actions/checkout@v4
       -
-        name: Build image
+        name: Test build of image
         id: docker_build_amd64
         uses: docker/build-push-action@v6.13.0
         with:
           push: false
           load: true
-          platforms: linux/amd64
-          tags: public-pool:amd64
+          platforms: linux/amd64, linux/arm64
+          tags: tor:testing
           cache-from: type=registry,ref=ghcr.io/sethforprivacy/tor:latest
 
