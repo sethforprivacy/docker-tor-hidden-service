@@ -109,7 +109,6 @@ jobs:
           images: |
             ${{ env.GHCR_REPO }}
           tags: |
-            type=ref,event=branch
             type=sha
             type=raw,value=latest,enable={{is_default_branch}}
 
