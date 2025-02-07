@@ -12,7 +12,7 @@ env:
   GHCR_REPO: ghcr.io/${{ github.repository_owner }}/tor
 
 jobs:
-  rebuild-container:
+  build:
     name: "Rebuild Container with the latest base image"
     runs-on: ubuntu-latest
     strategy:
