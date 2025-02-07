@@ -67,7 +67,6 @@ jobs:
           outputs: type=image,"name=${{ env.GHCR_REPO }}",push-by-digest=true,name-canonical=true,push=true
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
-          tags: tor:build
           cache-from: type=registry,ref=${{ env.GHCR_REPO }}:latest
           cache-to: type=inline
 
@@ -116,6 +115,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=sha
+            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Create manifest list and push
         working-directory: ${{ runner.temp }}/digests
