@@ -64,9 +64,10 @@ jobs:
         uses: docker/build-push-action@v6.13.0
         id: docker_build_push
         with:
-          outputs: type=image,"name=${{ env.DOCKERHUB_REPO }},${{ env.GHCR_REPO }}",push-by-digest=true,name-canonical=true,push=true
+          outputs: type=image,"name=${{ env.GHCR_REPO }}",push-by-digest=true,name-canonical=true,push=true
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
+          tags: tor:build
           cache-from: type=registry,ref=${{ env.GHCR_REPO }}:latest
           cache-to: type=inline
 
@@ -114,9 +115,7 @@ jobs:
             ${{ env.GHCR_REPO }}
           tags: |
             type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            type=sha
 
       - name: Create manifest list and push
         working-directory: ${{ runner.temp }}/digests
