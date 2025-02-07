@@ -7,6 +7,9 @@ on:
   pull_request:
   workflow_dispatch:
 
+env:
+  GHCR_REPO: ghcr.io/${{ github.repository_owner }}/tor
+
 jobs:
   rebuild-container:
     name: "Build image with cache"
@@ -43,5 +46,11 @@ jobs:
           load: true
           platforms: ${{ env.PLATFORM }}
           tags: tor:testing
-          cache-from: type=registry,ref=ghcr.io/sethforprivacy/tor:latest
-
+          cache-from: type=registry,ref=${{ env.GHCR_REPO }}:latest
+      - 
+        name: Test-run image
+        run: |
+          docker run --rm tor:testing &
+          PID=$!
+          sleep 30
+          kill -SIGINT $PID # this will return a non-zero exit code if the container dies early on
