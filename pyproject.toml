@@ -23,7 +23,7 @@ packages = [
 onions = "onions:main"
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.11"
+python = ">=3.10,<3.13"
 Jinja2 = ">=2.10"
 importlib_metadata = ">=1.6.0"
 vanguards = "^0.3.1"

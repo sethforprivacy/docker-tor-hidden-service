@@ -1,5 +1,5 @@
-# Use latest support Python version with an Alpine base
-FROM python:3.10-alpine
+# Use Python version 3.12.9 with an Alpine base
+FROM python:3.12.9-alpine3.21
 
 # Set necessary args for building
 # If omitted, the versions are determined from the git tags
